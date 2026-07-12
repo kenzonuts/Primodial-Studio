@@ -3,6 +3,7 @@
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { LocaleProvider } from "@/contexts/locale";
 
 type AppProvidersProps = {
   children: React.ReactNode;
@@ -10,15 +11,17 @@ type AppProvidersProps = {
 
 /**
  * Root client-side providers composition.
- * Add analytics, toast, and feature flags here as the product grows.
+ * Locale is ready for i18n; NavigationChrome is opt-in for advanced shells.
  */
 export function AppProviders({ children }: AppProvidersProps) {
   return (
     <ThemeProvider>
-      <TooltipProvider>
-        {children}
-        <Toaster />
-      </TooltipProvider>
+      <LocaleProvider>
+        <TooltipProvider>
+          {children}
+          <Toaster />
+        </TooltipProvider>
+      </LocaleProvider>
     </ThemeProvider>
   );
 }

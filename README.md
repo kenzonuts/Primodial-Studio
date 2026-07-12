@@ -41,6 +41,12 @@ src/
 
 See [docs/DESIGN_SYSTEM.md](./docs/DESIGN_SYSTEM.md) for tokens, components, and best practices.
 
+## Information architecture
+
+See [docs/INFORMATION_ARCHITECTURE.md](./docs/INFORMATION_ARCHITECTURE.md) for sitemap, homepage story, and navigation.
+
+See [docs/LAYOUT_SYSTEM.md](./docs/LAYOUT_SYSTEM.md) for grid, section contracts, and layout primitives.
+
 Reference compositions live in `src/design-system/examples/` (not routed pages).
 
 ## Getting started

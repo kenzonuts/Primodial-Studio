@@ -1,4 +1,8 @@
 export { cn } from "./utils";
 export { plusJakartaSans } from "./fonts";
 export * from "./seo";
-export * from "./motion/presets";
+export { fadeInUp, fadeIn, staggerContainer } from "./motion/presets";
+export {
+  SECTION_ANIMATION_HOOKS,
+  getSectionAnimationHook,
+} from "./motion/section-animations";

@@ -131,15 +131,3 @@ export const FOOTER_NAVIGATION: FooterNavigation = {
   ],
   newsletterReady: true,
 };
-
-/** @deprecated Prefer PRIMARY_NAVIGATION — kept for gradual migration */
-export const NAVIGATION = PRIMARY_NAVIGATION.items
-  .filter((item) => item.id !== "technology" && item.id !== "process")
-  .concat([
-    { id: "about", label: "About", href: ROUTES.about },
-    { id: "contact", label: "Contact", href: ROUTES.contact },
-  ])
-  .filter(
-    (item, index, list) =>
-      list.findIndex((entry) => entry.id === item.id) === index,
-  );
