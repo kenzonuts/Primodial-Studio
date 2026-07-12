@@ -15,6 +15,7 @@ export default defineConfig({
     include: ["tests/unit/**/*.{test,spec}.{ts,tsx}"],
     exclude: ["node_modules", ".next", "e2e", "tests/e2e"],
     css: true,
+    pool: "threads",
     coverage: {
       provider: "v8",
       reporter: ["text", "html"],

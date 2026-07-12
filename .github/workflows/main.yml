@@ -1,0 +1,97 @@
+name: Main
+
+on:
+  push:
+    branches: [main, master]
+
+concurrency:
+  group: main-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  production-gates:
+    name: Production Gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.14.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Unit tests with coverage
+        run: pnpm test:unit -- --coverage
+
+      - name: Build
+        run: pnpm build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://primordial.studio
+          CMS_PROVIDER: static
+          PAYLOAD_SECRET: ci-test-secret-min-8-chars
+          ANALYZE: "false"
+
+      - name: Bundle analysis (optional artifact)
+        if: github.event_name == 'push'
+        run: pnpm analyze
+        env:
+          NEXT_PUBLIC_SITE_URL: https://primordial.studio
+          CMS_PROVIDER: static
+          PAYLOAD_SECRET: ci-test-secret-min-8-chars
+          ANALYZE: "true"
+        continue-on-error: true
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: End-to-end tests
+        run: pnpm test:e2e
+        env:
+          CI: true
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+          CMS_PROVIDER: static
+          PAYLOAD_SECRET: ci-test-secret-min-8-chars
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-main
+          path: playwright-report/
+          retention-days: 14
+
+  deploy:
+    name: Deploy Ready
+    needs: production-gates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Vercel deploy note
+        run: |
+          echo "Vercel Git integration deploys main automatically."
+          echo "Promote via Vercel dashboard or CLI when gates are green."
+
+  notify-failure:
+    name: Notify on Failure
+    needs: [production-gates]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failure summary
+        run: echo "::error::Main branch production gates failed."

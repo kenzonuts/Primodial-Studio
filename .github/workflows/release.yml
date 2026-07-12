@@ -1,0 +1,72 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type deploy to confirm manual release checks"
+        required: true
+        default: "deploy"
+
+jobs:
+  release-verify:
+    name: Release Verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.14.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Full quality suite
+        run: |
+          pnpm lint
+          pnpm typecheck
+          pnpm test:unit
+          pnpm build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://primordial.studio
+          CMS_PROVIDER: static
+          PAYLOAD_SECRET: release-secret-min-8-chars
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Production e2e
+        run: pnpm test:e2e
+        env:
+          CI: true
+          NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+          CMS_PROVIDER: static
+          PAYLOAD_SECRET: release-secret-min-8-chars
+
+      - name: Health check contract
+        run: |
+          pnpm start -- -p 3000 &
+          sleep 5
+          curl -fsS http://127.0.0.1:3000/api/health | grep -q '"ok":true'
+          kill %1 || true
+
+  notify-failure:
+    name: Notify on Failure
+    needs: release-verify
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failure summary
+        run: echo "::error::Release verification failed — do not promote."

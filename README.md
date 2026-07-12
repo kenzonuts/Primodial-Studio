@@ -6,18 +6,20 @@ Official website for **Primordial Studio** — a Creative Technology Studio.
 
 ## Stack
 
-| Layer           | Choice                   |
-| --------------- | ------------------------ |
-| Framework       | Next.js 15 (App Router)  |
-| Language        | TypeScript (strict)      |
-| Styling         | Tailwind CSS v4          |
-| UI              | shadcn/ui                |
-| Animation       | Framer Motion + GSAP     |
-| State           | Zustand                  |
-| Theme           | next-themes (dark-first) |
-| Font            | Plus Jakarta Sans        |
-| Package manager | pnpm                     |
-| Deploy          | Vercel                   |
+| Layer           | Choice                          |
+| --------------- | ------------------------------- |
+| Framework       | Next.js 15 (App Router)         |
+| Language        | TypeScript (strict)             |
+| Styling         | Tailwind CSS v4                 |
+| UI              | shadcn/ui                       |
+| Animation       | Framer Motion + GSAP            |
+| CMS             | Payload 3 (SQLite / adaptered)  |
+| State           | Zustand                         |
+| Theme           | next-themes (dark-first)        |
+| Font            | Plus Jakarta Sans (`next/font`) |
+| Testing         | Vitest + Playwright             |
+| Package manager | pnpm                            |
+| Deploy          | Vercel                          |
 
 ## Architecture
 
@@ -25,29 +27,39 @@ Feature-based structure under `src/`:
 
 ```
 src/
-  app/           # Routes, layouts, SEO endpoints
-  components/    # Shared UI (ui/, layout/, providers/, shared/)
-  features/      # Domain features (isolated modules)
+  app/           # Routes, layouts, SEO, API, health, OG
+  components/    # Shared UI, layout, navigation, consent
+  features/      # Domain features (homepage sections)
+  cms/           # Payload collections + globals
+  adapters/      # CMS providers (static | payload | …)
+  repositories/  # Cached data access
+  services/      # Application services
+  config/        # Env, security, analytics, flags
+  analytics/     # Consent + tracking
+  monitoring/    # Errors + boundaries
+  performance/   # Web vitals + hints
   hooks/         # Reusable React hooks
-  lib/           # Framework utilities (seo, fonts, motion, cn)
+  lib/           # SEO, fonts, logger, utils
   stores/        # Zustand stores
   styles/        # Global CSS + design tokens
-  constants/     # Site + design token constants
+  constants/     # Site constants
   types/         # Shared TypeScript types
   utils/         # Pure helpers
 ```
 
-## Design system
+Full map: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
 
-See [docs/DESIGN_SYSTEM.md](./docs/DESIGN_SYSTEM.md) for tokens, components, and best practices.
+## Documentation
 
-## Information architecture
-
-See [docs/INFORMATION_ARCHITECTURE.md](./docs/INFORMATION_ARCHITECTURE.md) for sitemap, homepage story, and navigation.
-
-See [docs/LAYOUT_SYSTEM.md](./docs/LAYOUT_SYSTEM.md) for grid, section contracts, and layout primitives.
-
-Reference compositions live in `src/design-system/examples/` (not routed pages).
+| Doc                                                            | Purpose                       |
+| -------------------------------------------------------------- | ----------------------------- |
+| [Architecture](./docs/ARCHITECTURE.md)                         | Layers, domains, environments |
+| [Deployment](./docs/DEPLOYMENT.md)                             | Vercel, CI/CD, rollback       |
+| [Contributing](./docs/CONTRIBUTING.md)                         | PR workflow + standards       |
+| [Production checklist](./docs/PRODUCTION_CHECKLIST.md)         | Launch hardening              |
+| [Design system](./docs/DESIGN_SYSTEM.md)                       | Tokens & components           |
+| [Information architecture](./docs/INFORMATION_ARCHITECTURE.md) | Sitemap & story               |
+| [Layout system](./docs/LAYOUT_SYSTEM.md)                       | Grid & sections               |
 
 ## Getting started
 
@@ -59,29 +71,52 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+Admin (when `CMS_PROVIDER=payload`): [http://localhost:3000/admin](http://localhost:3000/admin)
+
 ## Scripts
 
-| Command          | Description                |
-| ---------------- | -------------------------- |
-| `pnpm dev`       | Start Turbopack dev server |
-| `pnpm build`     | Production build           |
-| `pnpm start`     | Serve production build     |
-| `pnpm lint`      | ESLint                     |
-| `pnpm format`    | Prettier write             |
-| `pnpm typecheck` | TypeScript `--noEmit`      |
+| Command          | Description                      |
+| ---------------- | -------------------------------- |
+| `pnpm dev`       | Turbopack dev server             |
+| `pnpm build`     | Production build                 |
+| `pnpm start`     | Serve production build           |
+| `pnpm lint`      | ESLint                           |
+| `pnpm format`    | Prettier write                   |
+| `pnpm typecheck` | TypeScript `--noEmit`            |
+| `pnpm test:unit` | Vitest unit tests                |
+| `pnpm test:e2e`  | Playwright end-to-end            |
+| `pnpm analyze`   | Bundle analyzer (`ANALYZE=true`) |
+| `pnpm ci`        | Lint + typecheck + unit + build  |
+
+## CI/CD
+
+GitHub Actions run on PRs, `main`, and releases:
+
+- Lint / format / typecheck
+- Unit + e2e tests
+- Production build
+- Optional bundle analysis on main
+
+See [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md).
 
 ## Conventions
 
 - **Commits**: Conventional Commits (`feat:`, `fix:`, `chore:`, …)
-- **Hooks**: Husky runs `lint-staged` on commit + commitlint on message
-- **Imports**: Path aliases via `@/*` (see `tsconfig.json`)
-- **UI**: Prefer shadcn primitives in `components/ui`; compose features in `features/`
+- **Hooks**: Husky → lint-staged + commitlint
+- **Imports**: `@/*` path aliases
+- **Logging**: `@/lib/logger` (no raw `console.log` in app code)
+- **Env**: `@/config/env` typed validation
+- **UI**: Prefer shadcn in `components/ui`; compose in `features/`
 
 ## Environment
 
-| Variable               | Purpose                                      |
-| ---------------------- | -------------------------------------------- |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL for metadata, sitemap, OG |
+See `.env.example` for the full list. Minimum:
+
+| Variable               | Purpose                         |
+| ---------------------- | ------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL (SEO / OG)        |
+| `CMS_PROVIDER`         | `static` (default) or `payload` |
+| `PAYLOAD_SECRET`       | Required when using Payload     |
 
 ## License
 

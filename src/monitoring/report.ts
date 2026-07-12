@@ -1,5 +1,6 @@
 import { featureFlags } from "@/config/feature-flags";
 import { monitoringConfig } from "@/config/monitoring";
+import { logger } from "@/lib/logger";
 
 type ErrorContext = {
   digest?: string;
@@ -8,25 +9,21 @@ type ErrorContext = {
 };
 
 /**
- * Central error reporter — no-ops until Sentry/LogRocket/OTel are enabled.
+ * Central error reporter — structured logs + optional Sentry/LogRocket.
  */
 export function reportError(error: unknown, context: ErrorContext = {}) {
   const payload = {
     message: error instanceof Error ? error.message : String(error),
     stack: error instanceof Error ? error.stack : undefined,
     ...context,
-    ts: Date.now(),
   };
 
-  if (process.env.NODE_ENV === "development") {
-    console.error("[monitoring]", payload);
-  }
+  logger.error("application_error", payload);
 
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent("ps_error", { detail: payload }));
   }
 
-  // Sentry-ready hook
   if (featureFlags.monitoring.sentry && monitoringConfig.sentryDsn) {
     const sentry = (
       globalThis as typeof globalThis & {
@@ -36,7 +33,6 @@ export function reportError(error: unknown, context: ErrorContext = {}) {
     sentry?.captureException(error, { extra: context });
   }
 
-  // LogRocket-ready hook
   if (featureFlags.monitoring.logrocket && monitoringConfig.logRocketAppId) {
     const lr = (
       globalThis as typeof globalThis & {
