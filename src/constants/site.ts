@@ -15,12 +15,23 @@ export const SITE_URL =
 export const SITE_LOCALE = "en_US" as const;
 
 export const SOCIAL_LINKS = {
-  twitter: "https://twitter.com/primordialstudio",
   github: "https://github.com/primordialstudio",
   linkedin: "https://linkedin.com/company/primordialstudio",
+  instagram: "https://instagram.com/primordialstudio",
+  x: "https://x.com/primordialstudio",
+  /** @deprecated Prefer `x` */
+  twitter: "https://x.com/primordialstudio",
+  behance: "https://behance.net/primordialstudio",
+  dribbble: "https://dribbble.com/primordialstudio",
+  discord: "https://discord.gg/primordialstudio",
 } as const;
 
 export const CONTACT_EMAIL = "hello@primordial.studio" as const;
+
+export const SITE_VERSION = "0.1.0" as const;
+
+export const SITE_SHORT_DESCRIPTION =
+  "A Creative Technology Studio building exceptional digital products for ambitious teams." as const;
 
 export const SERVICES = [
   "Software Engineering",

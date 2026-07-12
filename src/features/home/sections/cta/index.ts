@@ -1,2 +1,2 @@
-/** Homepage section: cta — implement in UI phase. */
-export {};
+export { FinalCtaSection } from "./final-cta-section";
+export { FINAL_CTA_COPY } from "./constants";

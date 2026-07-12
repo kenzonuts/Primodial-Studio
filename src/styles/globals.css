@@ -68,6 +68,17 @@
     text-wrap: balance;
   }
 
+  @keyframes cta-ripple {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.55;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(18);
+      opacity: 0;
+    }
+  }
+
   .gradient-text {
     background: linear-gradient(
       135deg,

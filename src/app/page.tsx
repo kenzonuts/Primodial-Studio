@@ -1,4 +1,5 @@
 import { SiteHeader } from "@/components/navigation";
+import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/features/home/sections/hero";
 import { AboutSection } from "@/features/home/sections/introduction";
 import { ServicesSection } from "@/features/home/sections/services";
@@ -7,9 +8,11 @@ import { ProcessSection } from "@/features/home/sections/process";
 import { TechnologySection } from "@/features/home/sections/technology";
 import { WhyUsSection } from "@/features/home/sections/why-us";
 import { FaqSection } from "@/features/home/sections/faq";
+import { FinalCtaSection } from "@/features/home/sections/cta";
+import { ContactSection } from "@/features/home/sections/contact";
 
 /**
- * Homepage — through trust sections (Why Us + FAQ).
+ * Homepage — full narrative through final conversion (CTA + Contact).
  */
 export default function HomePage() {
   return (
@@ -24,7 +27,10 @@ export default function HomePage() {
         <TechnologySection />
         <WhyUsSection />
         <FaqSection />
+        <FinalCtaSection />
+        <ContactSection />
       </main>
+      <Footer />
     </>
   );
 }

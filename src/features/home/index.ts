@@ -27,6 +27,14 @@ export {
   TRUST_QUOTE,
 } from "./sections/why-us";
 export { FaqSection, FAQ_SECTION_COPY, FAQ_ITEMS } from "./sections/faq";
+export { FinalCtaSection, FINAL_CTA_COPY } from "./sections/cta";
+export {
+  ContactSection,
+  ContactForm,
+  CONTACT_SECTION_COPY,
+  PROJECT_TYPE_OPTIONS,
+  BUDGET_OPTIONS,
+} from "./sections/contact";
 export {
   HOMEPAGE_SECTIONS,
   getEnabledHomepageSections,

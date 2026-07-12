@@ -110,6 +110,16 @@ export const HOMEPAGE_SECTIONS: readonly HomepageSectionDefinition[] = [
     animation: "scale",
     href: ROUTES.contact,
   },
+  {
+    id: "contact",
+    order: 12,
+    purpose: "Project intake and direct studio contact",
+    why: "Converts intent into actionable project details",
+    template: "contact",
+    enabled: true,
+    animation: "fade",
+    href: ROUTES.contact,
+  },
 ] as const;
 
 export const HOMEPAGE_SECTION_IDS = HOMEPAGE_SECTIONS.map(

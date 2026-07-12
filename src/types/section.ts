@@ -43,7 +43,8 @@ export type HomepageSectionId =
   | "why-us"
   | "testimonials"
   | "faq"
-  | "cta";
+  | "cta"
+  | "contact";
 
 export type HomepageSectionDefinition = {
   id: HomepageSectionId;

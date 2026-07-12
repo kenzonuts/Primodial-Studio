@@ -19,7 +19,7 @@ export function getOrganizationJsonLd() {
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     email: CONTACT_EMAIL,
-    sameAs: Object.values(SOCIAL_LINKS),
+    sameAs: Array.from(new Set(Object.values(SOCIAL_LINKS))),
     knowsAbout: [...SERVICES],
   } as const;
 }

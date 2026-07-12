@@ -1,6 +1,7 @@
 import { Container } from "./container";
 export type { ContainerProps, ContainerSize } from "./container";
 export { Footer } from "./footer";
+export { BackToTop } from "./back-to-top";
 export { Grid, type GridProps } from "./grid";
 export { Navbar } from "./navbar";
 export {

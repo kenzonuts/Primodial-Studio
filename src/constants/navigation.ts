@@ -113,13 +113,14 @@ export const PRIMARY_NAVIGATION: NavigationTree = {
 export const FOOTER_NAVIGATION: FooterNavigation = {
   company: [
     { id: "about", label: "About", href: ROUTES.about },
+    { id: "services", label: "Services", href: ROUTES.services },
+    { id: "portfolio", label: "Portfolio", href: ROUTES.work },
+    { id: "technology", label: "Technology", href: ROUTES.technology },
     { id: "process", label: "Process", href: ROUTES.process },
-    { id: "contact", label: "Contact", href: ROUTES.contact },
   ],
   work: [{ id: "work", label: "All work", href: ROUTES.work }],
   services: SERVICE_NAV_ITEMS,
   resources: [
-    { id: "technology", label: "Technology", href: ROUTES.technology },
     {
       id: "blog",
       label: "Blog",
@@ -132,10 +133,12 @@ export const FOOTER_NAVIGATION: FooterNavigation = {
       href: ROUTES.careers,
       status: "planned",
     },
+    { id: "privacy", label: "Privacy Policy", href: ROUTES.privacy },
+    { id: "terms", label: "Terms of Service", href: ROUTES.terms },
   ],
   legal: [
-    { id: "privacy", label: "Privacy", href: ROUTES.privacy },
-    { id: "terms", label: "Terms", href: ROUTES.terms },
+    { id: "privacy", label: "Privacy Policy", href: ROUTES.privacy },
+    { id: "terms", label: "Terms of Service", href: ROUTES.terms },
   ],
   newsletterReady: true,
 };
