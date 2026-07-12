@@ -6,6 +6,11 @@ export {
   SERVICES_SECTION_COPY,
 } from "./sections/services";
 export {
+  PortfolioSection,
+  HOME_PROJECTS,
+  PORTFOLIO_SECTION_COPY,
+} from "./sections/featured-work";
+export {
   HOMEPAGE_SECTIONS,
   getEnabledHomepageSections,
 } from "@/constants/homepage";

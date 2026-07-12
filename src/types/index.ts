@@ -16,7 +16,12 @@ export type {
   HomepageSectionId,
   HomepageSectionDefinition,
 } from "./section";
-export type { Project, ProjectStatus, ProjectCategory } from "./portfolio";
+export type {
+  Project,
+  ProjectStatus,
+  ProjectCategory,
+  ProjectFilter,
+} from "./portfolio";
 export type { Service, ServicePageSection } from "./service";
 export { SERVICE_PAGE_SECTIONS } from "./service";
 export type {
