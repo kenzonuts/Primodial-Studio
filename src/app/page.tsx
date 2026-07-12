@@ -1,8 +1,9 @@
 import { SiteHeader } from "@/components/navigation";
 import { HeroSection } from "@/features/home/sections/hero";
+import { AboutSection } from "@/features/home/sections/introduction";
 
 /**
- * Homepage — hero + navigation only (remaining sections ship in later phases).
+ * Homepage — Hero + About (remaining sections ship in later phases).
  */
 export default function HomePage() {
   return (
@@ -10,8 +11,7 @@ export default function HomePage() {
       <SiteHeader transparentOverHero />
       <main id="main-content">
         <HeroSection />
-        {/* Anchor target for hero scroll indicator — next sections mount here later */}
-        <div id="after-hero" className="h-px w-full" aria-hidden />
+        <AboutSection />
       </main>
     </>
   );

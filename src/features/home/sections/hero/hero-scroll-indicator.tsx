@@ -12,7 +12,7 @@ type HeroScrollIndicatorProps = {
 
 function HeroScrollIndicator({
   className,
-  targetId = "after-hero",
+  targetId = "about",
 }: HeroScrollIndicatorProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
 
