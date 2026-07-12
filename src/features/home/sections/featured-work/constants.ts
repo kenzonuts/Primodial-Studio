@@ -1,4 +1,4 @@
-import { ROUTES } from "@/constants/routes";
+import { HOME_SECTIONS } from "@/constants/routes";
 import type { Project, ProjectFilter } from "@/types/portfolio";
 
 export const PORTFOLIO_SECTION_COPY = {
@@ -7,7 +7,7 @@ export const PORTFOLIO_SECTION_COPY = {
   description:
     "Selected engagements where quality, performance, scalability, and thoughtful design were non-negotiable—from product platforms to immersive experiences.",
   ctaLabel: "View all work",
-  ctaHref: ROUTES.work,
+  ctaHref: HOME_SECTIONS.portfolio,
 } as const;
 
 export const PORTFOLIO_FILTERS: {
@@ -50,7 +50,7 @@ export const HOME_PROJECTS: Project[] = [
     solution: "A unified Flutter app with live maps and durable backend sync.",
     timeline: "Discovery → Design → Build → Launch",
     client: "RENBOK",
-    href: ROUTES.project("renbok"),
+    href: HOME_SECTIONS.portfolio,
     caseStudyReady: false,
     featured: true,
     liveUrl: undefined,
@@ -72,7 +72,7 @@ export const HOME_PROJECTS: Project[] = [
     year: 2024,
     coverImage: "",
     gallery: [],
-    href: ROUTES.project("exoduze"),
+    href: HOME_SECTIONS.portfolio,
     caseStudyReady: false,
     featured: false,
   },
@@ -92,7 +92,7 @@ export const HOME_PROJECTS: Project[] = [
     year: 2026,
     coverImage: "",
     gallery: [],
-    href: ROUTES.project("primordial-studio"),
+    href: HOME_SECTIONS.portfolio,
     caseStudyReady: false,
     featured: false,
   },
@@ -112,7 +112,7 @@ export const HOME_PROJECTS: Project[] = [
     year: 2025,
     coverImage: "",
     gallery: [],
-    href: ROUTES.project("restaurant-management-system"),
+    href: HOME_SECTIONS.portfolio,
     caseStudyReady: false,
     featured: false,
   },
@@ -132,7 +132,7 @@ export const HOME_PROJECTS: Project[] = [
     year: 2025,
     coverImage: "",
     gallery: [],
-    href: ROUTES.project("roblox-multiplayer-experience"),
+    href: HOME_SECTIONS.portfolio,
     caseStudyReady: false,
     featured: false,
   },
@@ -156,7 +156,7 @@ export const HOME_PROJECTS: Project[] = [
     year: 2025,
     coverImage: "",
     gallery: [],
-    href: ROUTES.project("artificial-intelligence-dashboard"),
+    href: HOME_SECTIONS.portfolio,
     caseStudyReady: false,
     featured: false,
   },

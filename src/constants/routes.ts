@@ -24,6 +24,23 @@ export const ROUTES = {
   dashboard: "/dashboard",
 } as const;
 
+/**
+ * Live homepage section anchors — use these until dedicated App Router pages ship.
+ * Prevents 404s from nav/footer during single-page launch.
+ */
+export const HOME_SECTIONS = {
+  home: "/",
+  about: "/#about",
+  services: "/#services",
+  portfolio: "/#portfolio",
+  process: "/#process",
+  technology: "/#technology",
+  whyUs: "/#why-us",
+  faq: "/#faq",
+  contact: "/#contact",
+  cta: "/#start-a-project",
+} as const;
+
 export const SERVICE_SLUGS = [
   "software-engineering",
   "website-development",
@@ -43,16 +60,12 @@ export const SERVICE_ROUTES = SERVICE_SLUGS.map((slug) => ({
   href: ROUTES.service(slug),
 }));
 
-/** Routes included in sitemap.xml (shipped pages only). */
+/**
+ * Sitemap — only routes that currently resolve (no phantom URLs).
+ * Expand when dedicated pages ship.
+ */
 export const SITEMAP_ROUTES = [
   ROUTES.home,
-  ROUTES.about,
-  ROUTES.services,
-  ...SERVICE_SLUGS.map((slug) => ROUTES.service(slug)),
-  ROUTES.work,
-  ROUTES.technology,
-  ROUTES.process,
-  ROUTES.contact,
   ROUTES.privacy,
   ROUTES.terms,
 ] as const;

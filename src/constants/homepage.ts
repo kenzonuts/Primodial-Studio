@@ -1,4 +1,4 @@
-import { ROUTES } from "@/constants/routes";
+import { HOME_SECTIONS } from "@/constants/routes";
 import type { HomepageSectionDefinition } from "@/types/section";
 
 /**
@@ -41,7 +41,7 @@ export const HOMEPAGE_SECTIONS: readonly HomepageSectionDefinition[] = [
     template: "content",
     enabled: true,
     animation: "cards",
-    href: ROUTES.services,
+    href: HOME_SECTIONS.services,
   },
   {
     id: "featured-work",
@@ -51,7 +51,7 @@ export const HOMEPAGE_SECTIONS: readonly HomepageSectionDefinition[] = [
     template: "portfolio",
     enabled: true,
     animation: "image-reveal",
-    href: ROUTES.work,
+    href: HOME_SECTIONS.portfolio,
   },
   {
     id: "process",
@@ -61,7 +61,7 @@ export const HOMEPAGE_SECTIONS: readonly HomepageSectionDefinition[] = [
     template: "content",
     enabled: true,
     animation: "slide",
-    href: ROUTES.process,
+    href: HOME_SECTIONS.process,
   },
   {
     id: "technology",
@@ -71,7 +71,7 @@ export const HOMEPAGE_SECTIONS: readonly HomepageSectionDefinition[] = [
     template: "content",
     enabled: true,
     animation: "fade",
-    href: ROUTES.technology,
+    href: HOME_SECTIONS.technology,
   },
   {
     id: "why-us",
@@ -108,7 +108,7 @@ export const HOMEPAGE_SECTIONS: readonly HomepageSectionDefinition[] = [
     template: "cta",
     enabled: true,
     animation: "scale",
-    href: ROUTES.contact,
+    href: HOME_SECTIONS.contact,
   },
   {
     id: "contact",
@@ -118,7 +118,7 @@ export const HOMEPAGE_SECTIONS: readonly HomepageSectionDefinition[] = [
     template: "contact",
     enabled: true,
     animation: "fade",
-    href: ROUTES.contact,
+    href: HOME_SECTIONS.contact,
   },
 ] as const;
 

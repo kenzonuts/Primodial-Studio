@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { BrandLogo } from "@/components/brand";
 import { Newsletter } from "@/components/forms/newsletter";
 import { BackToTop } from "@/components/layout/back-to-top";
 import { Container } from "@/components/layout/container";
@@ -105,9 +106,14 @@ function Footer({ className }: { className?: string }) {
               <div className="space-y-5 lg:col-span-4">
                 <Link
                   href="/"
-                  className="inline-flex text-lg font-semibold tracking-tight text-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
+                  className="inline-flex focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
+                  aria-label={`${SITE_NAME} home`}
                 >
-                  {SITE_NAME}
+                  <BrandLogo
+                    variant="full"
+                    height={64}
+                    className="max-w-[11rem]"
+                  />
                 </Link>
                 <p className="max-w-sm text-sm leading-relaxed text-text-secondary">
                   {SITE_SHORT_DESCRIPTION}

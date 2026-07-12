@@ -11,7 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { ROUTES, type ServiceRouteSlug } from "@/constants/routes";
+import { HOME_SECTIONS, type ServiceRouteSlug } from "@/constants/routes";
 
 /**
  * Homepage Services catalog — future-ready fields reserved for detail pages.
@@ -23,7 +23,7 @@ export const SERVICES_SECTION_COPY = {
   description:
     "From systems architecture to immersive experiences, Primordial Studio designs and engineers modern digital products with clarity, precision, and lasting craft.",
   ctaLabel: "View all services",
-  ctaHref: ROUTES.services,
+  ctaHref: HOME_SECTIONS.services,
 } as const;
 
 export type ServiceCardModel = {
@@ -60,7 +60,7 @@ export const HOME_SERVICES: ServiceCardModel[] = [
       "Cloud Integration",
     ],
     icon: Code2,
-    href: ROUTES.service("software-engineering"),
+    href: HOME_SECTIONS.services,
   },
   {
     id: "website-development",
@@ -77,7 +77,7 @@ export const HOME_SERVICES: ServiceCardModel[] = [
       "CMS Integration",
     ],
     icon: AppWindow,
-    href: ROUTES.service("website-development"),
+    href: HOME_SECTIONS.services,
   },
   {
     id: "mobile-application",
@@ -94,7 +94,7 @@ export const HOME_SERVICES: ServiceCardModel[] = [
       "Release Pipelines",
     ],
     icon: Smartphone,
-    href: ROUTES.service("mobile-application"),
+    href: HOME_SECTIONS.services,
   },
   {
     id: "ui-ux-design",
@@ -111,7 +111,7 @@ export const HOME_SERVICES: ServiceCardModel[] = [
       "Usability Testing",
     ],
     icon: Layers3,
-    href: ROUTES.service("ui-ux-design"),
+    href: HOME_SECTIONS.services,
   },
   {
     id: "brand-identity",
@@ -128,7 +128,7 @@ export const HOME_SERVICES: ServiceCardModel[] = [
       "Asset Libraries",
     ],
     icon: Palette,
-    href: ROUTES.service("brand-identity"),
+    href: HOME_SECTIONS.services,
   },
   {
     id: "artificial-intelligence",
@@ -145,7 +145,7 @@ export const HOME_SERVICES: ServiceCardModel[] = [
       "Business Intelligence",
     ],
     icon: Brain,
-    href: ROUTES.service("artificial-intelligence"),
+    href: HOME_SECTIONS.services,
   },
   {
     id: "creative-technology",
@@ -162,7 +162,7 @@ export const HOME_SERVICES: ServiceCardModel[] = [
       "Creative Tooling",
     ],
     icon: Sparkles,
-    href: ROUTES.service("creative-technology"),
+    href: HOME_SECTIONS.services,
   },
   {
     id: "roblox-development",
@@ -179,7 +179,7 @@ export const HOME_SERVICES: ServiceCardModel[] = [
       "Multiplayer & Maps",
     ],
     icon: Gamepad2,
-    href: ROUTES.service("roblox-development"),
+    href: HOME_SECTIONS.services,
   },
   {
     id: "3d-visualization",
@@ -196,6 +196,6 @@ export const HOME_SERVICES: ServiceCardModel[] = [
       "Still & Motion Assets",
     ],
     icon: Boxes,
-    href: ROUTES.service("3d-visualization"),
+    href: HOME_SECTIONS.services,
   },
 ];

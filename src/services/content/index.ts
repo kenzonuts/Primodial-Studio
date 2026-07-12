@@ -55,18 +55,10 @@ export const engagementService = {
 export async function getDynamicSitemapEntries(): Promise<
   { path: string; lastModified?: Date }[]
 > {
-  const [projects, services, posts] = await Promise.all([
-    contentService.projects.list(),
-    contentService.services.list(),
-    contentService.posts.list(),
-  ]);
-
-  return [
-    ...projects.map((p) => ({ path: `/work/${p.slug}` })),
-    ...services.map((s) => ({ path: `/services/${s.slug}` })),
-    ...posts.map((p) => ({
-      path: `/blog/${p.slug}`,
-      lastModified: p.publishedAt ? new Date(p.publishedAt) : undefined,
-    })),
-  ];
+  /**
+   * Launch gate: `/work/*`, `/services/*`, and `/blog/*` are reserved redirects
+   * until dedicated templates ship. Do not advertise thin URLs in the sitemap.
+   * Re-enable listing when real detail pages render content (not SectionRedirect).
+   */
+  return [];
 }

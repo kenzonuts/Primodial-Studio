@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
+import { BrandLogo } from "@/components/brand";
 import { Container } from "@/components/layout/container";
 import { DesktopNav } from "@/components/navigation/desktop-nav";
 import { MegaMenu } from "@/components/navigation/mega-menu";
@@ -69,16 +70,11 @@ function SiteHeader({ transparentOverHero = true }: SiteHeaderProps) {
       <Container className="flex h-16 items-center justify-between gap-4 md:h-[4.25rem]">
         <Link
           href="/"
-          className="group flex shrink-0 items-center gap-2 focus-visible:rounded-md focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
+          className="group flex shrink-0 items-center focus-visible:rounded-md focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
           aria-label={`${SITE_NAME} home`}
         >
-          <span
-            className="size-2 rounded-full bg-accent-blue shadow-[0_0_12px_rgb(79_140_255/0.65)] transition-transform duration-[var(--duration-fast)] group-hover:scale-110"
-            aria-hidden
-          />
-          <span className="text-sm font-semibold tracking-tight text-foreground md:text-[0.9375rem]">
-            {SITE_NAME}
-          </span>
+          <BrandLogo variant="mark" height={32} priority />
+          <span className="sr-only">{SITE_NAME}</span>
         </Link>
 
         <DesktopNav onOpenMegaMenu={setMegaMenuId} />

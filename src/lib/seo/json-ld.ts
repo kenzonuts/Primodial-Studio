@@ -1,3 +1,4 @@
+import { BRAND_ASSETS } from "@/constants/brand";
 import {
   CONTACT_EMAIL,
   SERVICES,
@@ -19,7 +20,7 @@ export function getOrganizationJsonLd() {
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     email: CONTACT_EMAIL,
-    logo: `${SITE_URL}/favicon.ico`,
+    logo: `${SITE_URL}${BRAND_ASSETS.logo}`,
     sameAs: Array.from(new Set(Object.values(SOCIAL_LINKS))),
     knowsAbout: [...SERVICES],
   } as const;

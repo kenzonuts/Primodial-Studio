@@ -1,16 +1,23 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+
 import { ImageResponse } from "next/og";
 
-import { SITE_NAME, SITE_TAGLINE } from "@/constants/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/constants/site";
 
-export const runtime = "edge";
 export const alt = SITE_NAME;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
- * Default Open Graph image — brand mark + tagline.
+ * Default Open Graph image — official mark + tagline.
  */
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const markBuffer = await readFile(
+    join(process.cwd(), "public/brand/primordial-studio-mark.png"),
+  );
+  const markSrc = `data:image/png;base64,${markBuffer.toString("base64")}`;
+
   return new ImageResponse(
     <div
       style={{
@@ -26,16 +33,26 @@ export default function OpenGraphImage() {
         fontFamily: "sans-serif",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          fontSize: 28,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: "rgba(250,250,250,0.55)",
-        }}
-      >
-        Creative Technology Studio
+      <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+        {}
+        <img
+          src={markSrc}
+          width={72}
+          height={72}
+          alt=""
+          style={{ filter: "invert(1)" }}
+        />
+        <div
+          style={{
+            display: "flex",
+            fontSize: 22,
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "rgba(250,250,250,0.55)",
+          }}
+        >
+          Creative Technology Studio
+        </div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
         <div style={{ fontSize: 72, fontWeight: 700, lineHeight: 1.05 }}>
@@ -61,15 +78,7 @@ export default function OpenGraphImage() {
           color: "rgba(250,250,250,0.45)",
         }}
       >
-        <span>primordial.studio</span>
-        <span
-          style={{
-            width: 14,
-            height: 14,
-            borderRadius: 999,
-            background: "#4F8CFF",
-          }}
-        />
+        <span>{SITE_URL.replace(/^https?:\/\//, "")}</span>
       </div>
     </div>,
     { ...size },

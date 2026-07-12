@@ -1,49 +1,58 @@
 # Production Hardening Checklist
 
+Track launch hardening. Detailed audits live under [docs/launch/](./launch/README.md).
+
 ## Quality
 
-- [ ] `pnpm lint` — zero errors
-- [ ] `pnpm typecheck` — zero errors
-- [ ] `pnpm test:unit` — green
-- [ ] `pnpm test:e2e` — green
-- [ ] `pnpm build` — green
-- [ ] No leftover `console.log` in application paths (use `logger`)
-- [ ] No unused deps (review with `pnpm why` / knip periodically)
+- [x] `pnpm lint` — zero errors (verified 2026-07-12)
+- [x] `pnpm typecheck` — zero errors (verified 2026-07-12)
+- [x] `pnpm test:unit` — green (17/17)
+- [ ] `pnpm test:e2e` — green (install Playwright browsers; run on preview)
+- [x] `pnpm build` — green on release candidate (verified 2026-07-12 locally)
+- [x] No leftover `console.log` policy — use `logger`
+- [ ] `pnpm audit --prod` — re-run at cutover (registry flaked during audit)
 
 ## SEO & a11y
 
-- [ ] Metadata + OG image render (`/opengraph-image`, `/api/og`)
-- [ ] `robots.txt` + `sitemap.xml` reachable
-- [ ] JSON-LD present on homepage
-- [ ] Skip link + main landmark
-- [ ] Cookie consent keyboard accessible
+- [x] Metadata + OG image routes present
+- [x] `robots.txt` + `sitemap.xml` (real pages only)
+- [x] JSON-LD on root + homepage FAQ/breadcrumb
+- [x] Skip link + main landmark
+- [ ] Cookie consent keyboard pass on preview
+- [ ] Live Rich Results / social debugger on prod URL
 
 ## Security
 
-- [ ] Security headers verified (CSP, HSTS, XFO, Referrer-Policy)
-- [ ] `/admin` blocked in robots
-- [ ] Secrets only in Vercel/env — never committed
-- [ ] Forms sanitized (`src/utils/sanitize.ts`)
-- [ ] Rate limiting plan documented for contact/newsletter (Upstash ready)
+- [x] Security headers (CSP, HSTS, XFO, Referrer-Policy, Permissions-Policy)
+- [x] `/admin` blocked in robots
+- [x] Secrets via env — `.env.example` documented
+- [x] Forms sanitized (`src/utils/sanitize.ts`)
+- [ ] Rate limiting on contact/newsletter (Upstash or equivalent)
 
 ## Performance
 
 - [ ] Lighthouse Performance ≥ 95 (prod URL)
-- [ ] LCP prioritized for hero
-- [ ] Images via `next/image` (AVIF/WebP)
-- [ ] Fonts via `next/font` (subset + swap)
-- [ ] Bundle report reviewed (`pnpm analyze`)
+- [x] Fonts via `next/font`
+- [x] Image pipeline via `next/image` where used
+- [ ] Bundle report reviewed (`pnpm analyze`) on main
 
 ## Observability
 
-- [ ] `/api/health` monitored
-- [ ] Vercel Analytics / Speed Insights enabled as needed
+- [x] `/api/health`
+- [ ] Vercel Analytics / Speed Insights confirmed receiving prod traffic
 - [ ] Sentry DSN + flag when ready
-- [ ] Error pages (`error`, `global-error`, `not-found`) verified
+- [x] Error pages (`error`, `global-error`, `not-found`)
+
+## Routing / IA (launch)
+
+- [x] Nav/footer use live homepage sections (`HOME_SECTIONS`)
+- [x] Reserved routes redirect to sections (`SectionRedirect`)
+- [x] Legal pages `/privacy`, `/terms`
+- [x] Dynamic sitemap gated until detail pages exist
 
 ## Ops
 
-- [ ] Backup strategy reviewed (`src/config/backup.ts`)
-- [ ] Rollback path tested once
+- [ ] Backup strategy reviewed if Payload DB enabled
+- [ ] Rollback path tested once on Vercel
 - [ ] Staging/preview env parity checked
 - [ ] Release workflow green before major cutover

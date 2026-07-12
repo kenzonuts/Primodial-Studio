@@ -5,7 +5,6 @@ import { HOME_PROJECTS } from "@/features/home/sections/featured-work/constants"
 import { HOME_SERVICES } from "@/features/home/sections/services/constants";
 import { FINAL_CTA_COPY } from "@/features/home/sections/cta/constants";
 import { PRIMARY_NAVIGATION } from "@/constants/navigation";
-import { ROUTES } from "@/constants/routes";
 
 describe("navigation", () => {
   it("exposes primary nav items with hrefs", () => {
@@ -17,7 +16,7 @@ describe("navigation", () => {
   });
 
   it("has a start-project CTA", () => {
-    expect(PRIMARY_NAVIGATION.cta.href).toBe(ROUTES.contact);
+    expect(PRIMARY_NAVIGATION.cta.href).toContain("start-a-project");
   });
 });
 

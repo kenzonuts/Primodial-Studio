@@ -8,6 +8,7 @@ export {
   CONTACT_EMAIL,
   SOCIAL_LINKS,
 } from "./site";
+export { BRAND_ASSETS } from "./brand";
 export { colors, typography, spacing, motion, zIndex } from "./design-tokens";
 export * from "./tokens";
 export * from "./routes";

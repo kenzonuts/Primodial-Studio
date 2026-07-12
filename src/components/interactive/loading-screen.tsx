@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { BrandLogo } from "@/components/brand";
 import { SITE_NAME } from "@/constants/site";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { useUIStore } from "@/stores/ui-store";
@@ -107,9 +108,13 @@ function LoadingScreen() {
                   ease: "easeInOut",
                 }}
               />
-              <p className="relative text-lg font-semibold tracking-tight text-foreground md:text-xl">
-                {SITE_NAME}
-              </p>
+              <BrandLogo
+                variant="full"
+                height={96}
+                priority
+                className="relative max-w-[14rem] md:max-w-[16rem]"
+              />
+              <span className="sr-only">{SITE_NAME}</span>
             </div>
 
             <div className="flex w-40 flex-col gap-2">

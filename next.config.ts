@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
       {
         pathname: "/api/media/file/**",
       },
+      {
+        pathname: "/brand/**",
+      },
+      {
+        pathname: "/assets/**",
+      },
     ],
     minimumCacheTTL: 60 * 60 * 24 * 30,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
@@ -47,6 +53,15 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/assets/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/brand/(.*)",
         headers: [
           {
             key: "Cache-Control",

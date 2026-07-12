@@ -1,4 +1,5 @@
 import {
+  HOME_SECTIONS,
   ROUTES,
   SERVICE_SLUGS,
   type ServiceRouteSlug,
@@ -22,11 +23,12 @@ const SERVICE_LABELS: Record<ServiceRouteSlug, string> = {
   "3d-visualization": "3D Visualization",
 };
 
+/** Until /services/[slug] pages ship, deep-link to the homepage services section. */
 export const SERVICE_NAV_ITEMS: NavigationItem[] = SERVICE_SLUGS.map(
   (slug) => ({
     id: slug,
     label: SERVICE_LABELS[slug],
-    href: ROUTES.service(slug),
+    href: HOME_SECTIONS.services,
   }),
 );
 
@@ -60,47 +62,46 @@ export const SERVICES_MEGA_MENU: MegaMenuColumn[] = [
 ];
 
 /**
- * Primary site navigation — desktop + mobile share this tree.
- * Utility slots (theme, search, locale, dashboard) are declared ready.
+ * Primary site navigation — points at live homepage sections for launch.
  */
 export const PRIMARY_NAVIGATION: NavigationTree = {
   items: [
     {
       id: "home",
       label: "Home",
-      href: ROUTES.home,
+      href: HOME_SECTIONS.home,
     },
     {
       id: "about",
       label: "About",
-      href: ROUTES.about,
+      href: HOME_SECTIONS.about,
     },
     {
       id: "services",
       label: "Services",
-      href: ROUTES.services,
+      href: HOME_SECTIONS.services,
       megaMenu: SERVICES_MEGA_MENU,
     },
     {
       id: "portfolio",
       label: "Portfolio",
-      href: ROUTES.work,
+      href: HOME_SECTIONS.portfolio,
     },
     {
       id: "technology",
       label: "Technology",
-      href: ROUTES.technology,
+      href: HOME_SECTIONS.technology,
     },
     {
       id: "contact",
       label: "Contact",
-      href: ROUTES.contact,
+      href: HOME_SECTIONS.contact,
     },
   ],
   cta: {
     id: "start-project",
     label: "Start Your Project",
-    href: ROUTES.contact,
+    href: HOME_SECTIONS.cta,
   },
   utilities: {
     themeToggle: true,
@@ -112,13 +113,13 @@ export const PRIMARY_NAVIGATION: NavigationTree = {
 
 export const FOOTER_NAVIGATION: FooterNavigation = {
   company: [
-    { id: "about", label: "About", href: ROUTES.about },
-    { id: "services", label: "Services", href: ROUTES.services },
-    { id: "portfolio", label: "Portfolio", href: ROUTES.work },
-    { id: "technology", label: "Technology", href: ROUTES.technology },
-    { id: "process", label: "Process", href: ROUTES.process },
+    { id: "about", label: "About", href: HOME_SECTIONS.about },
+    { id: "services", label: "Services", href: HOME_SECTIONS.services },
+    { id: "portfolio", label: "Portfolio", href: HOME_SECTIONS.portfolio },
+    { id: "technology", label: "Technology", href: HOME_SECTIONS.technology },
+    { id: "process", label: "Process", href: HOME_SECTIONS.process },
   ],
-  work: [{ id: "work", label: "All work", href: ROUTES.work }],
+  work: [{ id: "work", label: "All work", href: HOME_SECTIONS.portfolio }],
   services: SERVICE_NAV_ITEMS,
   resources: [
     {

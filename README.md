@@ -51,15 +51,25 @@ Full map: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)
 
 ## Documentation
 
-| Doc                                                            | Purpose                       |
-| -------------------------------------------------------------- | ----------------------------- |
-| [Architecture](./docs/ARCHITECTURE.md)                         | Layers, domains, environments |
-| [Deployment](./docs/DEPLOYMENT.md)                             | Vercel, CI/CD, rollback       |
-| [Contributing](./docs/CONTRIBUTING.md)                         | PR workflow + standards       |
-| [Production checklist](./docs/PRODUCTION_CHECKLIST.md)         | Launch hardening              |
-| [Design system](./docs/DESIGN_SYSTEM.md)                       | Tokens & components           |
-| [Information architecture](./docs/INFORMATION_ARCHITECTURE.md) | Sitemap & story               |
-| [Layout system](./docs/LAYOUT_SYSTEM.md)                       | Grid & sections               |
+| Doc                                                            | Purpose                                                   |
+| -------------------------------------------------------------- | --------------------------------------------------------- |
+| [Developer handover](./docs/DEVELOPER_HANDOVER.md)             | Onboarding without tribal knowledge                       |
+| [Launch pack](./docs/launch/README.md)                         | Production audit + launch/QA/SEO/a11y/security checklists |
+| [Architecture](./docs/ARCHITECTURE.md)                         | Layers, domains, environments                             |
+| [Deployment](./docs/DEPLOYMENT.md)                             | Vercel, CI/CD, rollback                                   |
+| [Deployment checklist](./docs/launch/DEPLOYMENT_CHECKLIST.md)  | Cutover smoke checks                                      |
+| [Maintenance](./docs/MAINTENANCE.md)                           | Ops cadence + dependency hygiene                          |
+| [Post-launch](./docs/POST_LAUNCH.md)                           | First 30 days                                             |
+| [Roadmap](./docs/ROADMAP.md)                                   | Phase 1–5 product plan                                    |
+| [Troubleshooting](./docs/TROUBLESHOOTING.md)                   | Common failures                                           |
+| [Coding standards](./docs/CODING_STANDARDS.md)                 | Engineering rules                                         |
+| [Contributing](./docs/CONTRIBUTING.md)                         | PR workflow                                               |
+| [Production checklist](./docs/PRODUCTION_CHECKLIST.md)         | Launch hardening tracker                                  |
+| [Release notes](./docs/RELEASE_NOTES.md)                       | v0.1.0 launch candidate                                   |
+| [Versioning](./docs/VERSIONING.md)                             | SemVer policy                                             |
+| [Design system](./docs/DESIGN_SYSTEM.md)                       | Tokens & components                                       |
+| [Information architecture](./docs/INFORMATION_ARCHITECTURE.md) | Sitemap & story                                           |
+| [Layout system](./docs/LAYOUT_SYSTEM.md)                       | Grid & sections                                           |
 
 ## Getting started
 

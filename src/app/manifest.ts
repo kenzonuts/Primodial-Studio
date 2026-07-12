@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 
+import { BRAND_ASSETS } from "@/constants/brand";
 import { SITE_DESCRIPTION, SITE_NAME } from "@/constants/site";
 
 /**
- * PWA manifest — icons expand as assets land in /public/assets/icons.
+ * PWA manifest — icons from official Primordial Studio mark.
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -20,14 +21,29 @@ export default function manifest(): MetadataRoute.Manifest {
     dir: "ltr",
     icons: [
       {
-        src: "/favicon.ico",
+        src: BRAND_ASSETS.favicon,
         sizes: "any",
         type: "image/x-icon",
         purpose: "any",
       },
-      // Future maskable icons:
-      // { src: "/assets/icons/icon-192.png", sizes: "192x192", type: "image/png", purpose: "maskable" },
-      // { src: "/assets/icons/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      {
+        src: BRAND_ASSETS.icon192,
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: BRAND_ASSETS.icon512,
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: BRAND_ASSETS.appleTouchIcon,
+        sizes: "180x180",
+        type: "image/png",
+        purpose: "any",
+      },
     ],
   };
 }
