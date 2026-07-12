@@ -1,15 +1,19 @@
 import { NextResponse } from "next/server";
 
 import { engagementService } from "@/services/content";
+import { isValidEmail, sanitizeEmail } from "@/utils/sanitize";
 
 /**
- * Newsletter API — persists via CMS adapter (Payload or static).
+ * Newsletter API — sanitizes email and persists via CMS adapter.
  */
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { email?: string; source?: string };
 
-    if (!body.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
+    const email =
+      typeof body.email === "string" ? sanitizeEmail(body.email) : "";
+
+    if (!isValidEmail(email)) {
       return NextResponse.json(
         { ok: false, error: "Invalid email" },
         { status: 400 },
@@ -17,7 +21,7 @@ export async function POST(request: Request) {
     }
 
     const result = await engagementService.subscribe({
-      email: body.email.trim().toLowerCase(),
+      email,
       source: body.source ?? "website",
     });
 

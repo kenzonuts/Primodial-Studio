@@ -3,6 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { withPayload } from "@payloadcms/next/withPayload";
 
+import { buildSecurityHeaders } from "@/config/security";
+
 const __filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(__filename);
 
@@ -12,6 +14,7 @@ const dirname = path.dirname(__filename);
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  compress: true,
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [],
@@ -20,9 +23,18 @@ const nextConfig: NextConfig = {
         pathname: "/api/media/file/**",
       },
     ],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
+  },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: buildSecurityHeaders(),
+      },
+    ];
   },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {

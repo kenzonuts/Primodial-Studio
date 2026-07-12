@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { seoConfig } from "@/config/seo";
 import {
   SITE_DESCRIPTION,
   SITE_LOCALE,
@@ -8,14 +9,21 @@ import {
   SITE_URL,
 } from "@/constants/site";
 
-const DEFAULT_OG_IMAGE = "/assets/og/default.png";
+const DEFAULT_OG_IMAGE = seoConfig.defaultOgImage;
 
-type BuildMetadataInput = {
+export type BuildMetadataInput = {
   title?: string;
   description?: string;
   path?: string;
   image?: string;
   noIndex?: boolean;
+  keywords?: string[];
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  authors?: string[];
+  locale?: string;
+  alternateLocales?: string[];
 };
 
 /**
@@ -28,10 +36,26 @@ export function buildMetadata({
   path = "",
   image = DEFAULT_OG_IMAGE,
   noIndex = false,
+  keywords = [...seoConfig.keywords],
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  authors,
+  locale = SITE_LOCALE,
+  alternateLocales = [...seoConfig.locales],
 }: BuildMetadataInput = {}): Metadata {
   const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
   const url = `${SITE_URL}${path}`;
-  const ogImage = image.startsWith("http") ? image : `${SITE_URL}${image}`;
+  const ogImage = image.startsWith("http")
+    ? image
+    : image.startsWith("/api/og")
+      ? `${SITE_URL}${image}`
+      : `${SITE_URL}${image}`;
+
+  const languages: Record<string, string> = {};
+  for (const loc of alternateLocales) {
+    languages[loc] = url;
+  }
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -43,25 +67,20 @@ export function buildMetadata({
         },
     description,
     applicationName: SITE_NAME,
-    authors: [{ name: SITE_NAME, url: SITE_URL }],
+    authors: authors?.map((name) => ({ name })) ?? [
+      { name: SITE_NAME, url: SITE_URL },
+    ],
     creator: SITE_NAME,
     publisher: SITE_NAME,
-    keywords: [
-      "Primordial Studio",
-      "Creative Technology Studio",
-      "Software Engineering",
-      "UI/UX Design",
-      "Branding",
-      "Artificial Intelligence",
-      "Digital Experiences",
-      "Roblox Development",
-    ],
+    keywords,
+    category: "technology",
     alternates: {
       canonical: url,
+      languages,
     },
     openGraph: {
-      type: "website",
-      locale: SITE_LOCALE,
+      type,
+      locale,
       url,
       siteName: SITE_NAME,
       title: pageTitle,
@@ -71,15 +90,32 @@ export function buildMetadata({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: SITE_NAME,
+          alt: title ?? SITE_NAME,
         },
       ],
+      ...(type === "article"
+        ? {
+            publishedTime,
+            modifiedTime,
+            authors: authors ?? [SITE_NAME],
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
       description,
       images: [ogImage],
+      creator: seoConfig.twitterHandle,
+      site: seoConfig.twitterHandle,
+    },
+    verification: {
+      google: seoConfig.verification.google,
+      other: Object.fromEntries(
+        Object.entries(seoConfig.verification.other).filter(([, value]) =>
+          Boolean(value),
+        ) as [string, string][],
+      ),
     },
     robots: noIndex
       ? { index: false, follow: false }
@@ -95,4 +131,18 @@ export function buildMetadata({
           },
         },
   };
+}
+
+/** Dynamic OG image URL helper for future blog/portfolio pages */
+export function buildOgImageUrl(params: {
+  title: string;
+  description?: string;
+  type?: string;
+}): string {
+  const search = new URLSearchParams({
+    title: params.title,
+    ...(params.description ? { description: params.description } : {}),
+    ...(params.type ? { type: params.type } : {}),
+  });
+  return `/api/og?${search.toString()}`;
 }

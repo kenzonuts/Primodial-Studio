@@ -1,8 +1,21 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/analytics/track";
 
 export default function NotFound() {
+  useEffect(() => {
+    trackEvent({
+      name: "not_found",
+      payload: {
+        path: typeof window !== "undefined" ? window.location.pathname : "",
+      },
+    });
+  }, []);
+
   return (
     <main className="container-page flex min-h-dvh flex-col items-start justify-center py-24">
       <p className="mb-3 text-sm tracking-wide text-secondary uppercase">404</p>

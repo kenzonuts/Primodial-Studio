@@ -11,3 +11,8 @@ export { useMousePosition } from "./use-mouse-position";
 export { useScrollProgress } from "./use-scroll-progress";
 export { useMagnetic } from "./use-magnetic";
 export { useGsap } from "./use-gsap";
+export {
+  useAnalytics,
+  usePageViewTracking,
+  useScrollDepthTracking,
+} from "./use-analytics";
