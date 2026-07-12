@@ -1,37 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Primordial Studio
 
-## Getting Started
+Official website for **Primordial Studio** — a Creative Technology Studio.
 
-First, run the development server:
+> Building Digital Products That Matter.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+| Layer           | Choice                   |
+| --------------- | ------------------------ |
+| Framework       | Next.js 15 (App Router)  |
+| Language        | TypeScript (strict)      |
+| Styling         | Tailwind CSS v4          |
+| UI              | shadcn/ui                |
+| Animation       | Framer Motion + GSAP     |
+| State           | Zustand                  |
+| Theme           | next-themes (dark-first) |
+| Font            | Plus Jakarta Sans        |
+| Package manager | pnpm                     |
+| Deploy          | Vercel                   |
+
+## Architecture
+
+Feature-based structure under `src/`:
+
+```
+src/
+  app/           # Routes, layouts, SEO endpoints
+  components/    # Shared UI (ui/, layout/, providers/, shared/)
+  features/      # Domain features (isolated modules)
+  hooks/         # Reusable React hooks
+  lib/           # Framework utilities (seo, fonts, motion, cn)
+  stores/        # Zustand stores
+  styles/        # Global CSS + design tokens
+  constants/     # Site + design token constants
+  types/         # Shared TypeScript types
+  utils/         # Pure helpers
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+cp .env.example .env.local
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command          | Description                |
+| ---------------- | -------------------------- |
+| `pnpm dev`       | Start Turbopack dev server |
+| `pnpm build`     | Production build           |
+| `pnpm start`     | Serve production build     |
+| `pnpm lint`      | ESLint                     |
+| `pnpm format`    | Prettier write             |
+| `pnpm typecheck` | TypeScript `--noEmit`      |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Conventions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Commits**: Conventional Commits (`feat:`, `fix:`, `chore:`, …)
+- **Hooks**: Husky runs `lint-staged` on commit + commitlint on message
+- **Imports**: Path aliases via `@/*` (see `tsconfig.json`)
+- **UI**: Prefer shadcn primitives in `components/ui`; compose features in `features/`
 
-## Deploy on Vercel
+## Environment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Variable               | Purpose                                      |
+| ---------------------- | -------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL for metadata, sitemap, OG |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Primodial-Studio
+## License
+
+Proprietary — Primordial Studio. All rights reserved.

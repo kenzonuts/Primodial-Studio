@@ -1,10 +1,5 @@
-import type { Config } from "prettier";
-
-/**
- * Prettier config for Primordial Studio.
- * Tailwind class sorting is handled by prettier-plugin-tailwindcss.
- */
-const config: Config = {
+/** @type {import("prettier").Config} */
+const config = {
   semi: true,
   singleQuote: false,
   trailingComma: "all",

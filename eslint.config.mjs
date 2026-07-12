@@ -9,16 +9,40 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
+/**
+ * ESLint flat config.
+ * Extends Next.js core-web-vitals + TypeScript rules, and disables
+ * stylistic rules that conflict with Prettier.
+ */
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
   {
     ignores: [
       "node_modules/**",
       ".next/**",
       "out/**",
       "build/**",
+      "dist/**",
+      "coverage/**",
       "next-env.d.ts",
     ],
+  },
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
+      "@typescript-eslint/consistent-type-imports": [
+        "warn",
+        { prefer: "type-imports", fixStyle: "inline-type-imports" },
+      ],
+      "react/jsx-no-leaked-render": "off",
+    },
   },
 ];
 
