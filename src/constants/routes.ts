@@ -26,12 +26,14 @@ export const ROUTES = {
 
 export const SERVICE_SLUGS = [
   "software-engineering",
+  "website-development",
+  "mobile-application",
   "ui-ux-design",
-  "branding",
+  "brand-identity",
   "artificial-intelligence",
   "creative-technology",
-  "digital-experiences",
   "roblox-development",
+  "3d-visualization",
 ] as const;
 
 export type ServiceRouteSlug = (typeof SERVICE_SLUGS)[number];

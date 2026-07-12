@@ -12,12 +12,14 @@ import type {
 
 const SERVICE_LABELS: Record<ServiceRouteSlug, string> = {
   "software-engineering": "Software Engineering",
-  "ui-ux-design": "UI/UX Design",
-  branding: "Branding",
+  "website-development": "Website Development",
+  "mobile-application": "Mobile Application",
+  "ui-ux-design": "UI / UX Design",
+  "brand-identity": "Brand Identity",
   "artificial-intelligence": "Artificial Intelligence",
   "creative-technology": "Creative Technology",
-  "digital-experiences": "Digital Experiences",
   "roblox-development": "Roblox Development",
+  "3d-visualization": "3D Visualization",
 };
 
 export const SERVICE_NAV_ITEMS: NavigationItem[] = SERVICE_SLUGS.map(
@@ -35,8 +37,9 @@ export const SERVICES_MEGA_MENU: MegaMenuColumn[] = [
     items: SERVICE_NAV_ITEMS.filter((item) =>
       [
         "software-engineering",
+        "website-development",
+        "mobile-application",
         "artificial-intelligence",
-        "roblox-development",
       ].includes(item.id),
     ),
   },
@@ -44,14 +47,14 @@ export const SERVICES_MEGA_MENU: MegaMenuColumn[] = [
     id: "design",
     title: "Design",
     items: SERVICE_NAV_ITEMS.filter((item) =>
-      ["ui-ux-design", "branding", "digital-experiences"].includes(item.id),
+      ["ui-ux-design", "brand-identity", "3d-visualization"].includes(item.id),
     ),
   },
   {
     id: "create",
     title: "Create",
     items: SERVICE_NAV_ITEMS.filter((item) =>
-      ["creative-technology"].includes(item.id),
+      ["creative-technology", "roblox-development"].includes(item.id),
     ),
   },
 ];

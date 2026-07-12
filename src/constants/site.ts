@@ -7,7 +7,7 @@ export const SITE_NAME = "Primordial Studio" as const;
 export const SITE_TAGLINE = "Building Digital Products That Matter." as const;
 
 export const SITE_DESCRIPTION =
-  "Primordial Studio is a Creative Technology Studio specializing in software engineering, UI/UX design, branding, artificial intelligence, creative technology, digital experiences, and Roblox development. We partner with startups, businesses, and creators to transform ambitious ideas into exceptional digital products." as const;
+  "Primordial Studio is a Creative Technology Studio specializing in software engineering, website and mobile development, UI/UX design, brand identity, artificial intelligence, creative technology, Roblox development, and 3D visualization. We partner with startups, businesses, and creators to transform ambitious ideas into exceptional digital products." as const;
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://primordial.studio";
@@ -24,12 +24,14 @@ export const CONTACT_EMAIL = "hello@primordial.studio" as const;
 
 export const SERVICES = [
   "Software Engineering",
+  "Website Development",
+  "Mobile Application",
   "UI/UX Design",
-  "Branding",
+  "Brand Identity",
   "Artificial Intelligence",
   "Creative Technology",
-  "Digital Experiences",
   "Roblox Development",
+  "3D Visualization",
 ] as const;
 
 export {
