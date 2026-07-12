@@ -4,18 +4,19 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { useSmoothScroll } from "@/components/providers/smooth-scroll-provider";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 
 type BackToTopProps = {
   className?: string;
-  /** Scroll threshold before showing (px) */
   threshold?: number;
 };
 
 function BackToTop({ className, threshold = 480 }: BackToTopProps) {
   const [visible, setVisible] = useState(false);
   const reducedMotion = usePrefersReducedMotion();
+  const { scrollTo } = useSmoothScroll();
 
   useEffect(() => {
     const onScroll = () => {
@@ -26,20 +27,13 @@ function BackToTop({ className, threshold = 480 }: BackToTopProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [threshold]);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: reducedMotion ? "auto" : "smooth",
-    });
-  };
-
   return (
     <AnimatePresence>
       {visible ? (
         <motion.button
           type="button"
           aria-label="Back to top"
-          onClick={scrollToTop}
+          onClick={() => scrollTo(0, { immediate: reducedMotion })}
           initial={reducedMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={reducedMotion ? undefined : { opacity: 0, y: 12 }}

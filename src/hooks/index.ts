@@ -6,3 +6,8 @@ export {
 } from "./use-scroll-direction";
 export { useNavbarVisibility } from "./use-navbar-visibility";
 export { useSectionInView } from "./use-section-in-view";
+export { usePointerFine } from "./use-pointer-fine";
+export { useMousePosition } from "./use-mouse-position";
+export { useScrollProgress } from "./use-scroll-progress";
+export { useMagnetic } from "./use-magnetic";
+export { useGsap } from "./use-gsap";

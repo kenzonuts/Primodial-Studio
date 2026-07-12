@@ -13,10 +13,14 @@
   }
 
   html {
-    @apply scroll-smooth antialiased;
+    @apply antialiased;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  html:not(.lenis) {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -66,17 +70,6 @@
 
   .text-balance {
     text-wrap: balance;
-  }
-
-  @keyframes cta-ripple {
-    0% {
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0.55;
-    }
-    100% {
-      transform: translate(-50%, -50%) scale(18);
-      opacity: 0;
-    }
   }
 
   .gradient-text {
@@ -224,6 +217,80 @@
       font-size: var(--text-body-lg-lg);
     }
   }
+
+  @keyframes cta-ripple {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.55;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(18);
+      opacity: 0;
+    }
+  }
+
+  @keyframes aurora-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(2%, -3%, 0) scale(1.06);
+    }
+  }
+
+  @keyframes particle-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0.2;
+    }
+    50% {
+      transform: translate3d(6px, -14px, 0);
+      opacity: 0.45;
+    }
+  }
+
+  @keyframes gradient-reveal {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+/* Custom cursor — fine pointer only (class toggled in JS) */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [role="button"],
+html.has-custom-cursor input,
+html.has-custom-cursor textarea,
+html.has-custom-cursor select {
+  cursor: none !important;
+}
+
+/* Lenis — prevent double smoothing artifacts */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 @media (prefers-reduced-motion: reduce) {
