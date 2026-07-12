@@ -1,7 +1,4 @@
-/**
- * Homepage section modules — one folder per IA section.
- * Implement UI in a later phase; keep IDs stable.
- */
+export { HeroSection, HERO_COPY } from "./sections/hero";
 export {
   HOMEPAGE_SECTIONS,
   getEnabledHomepageSections,

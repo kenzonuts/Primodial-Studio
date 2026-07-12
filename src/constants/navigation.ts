@@ -63,9 +63,14 @@ export const SERVICES_MEGA_MENU: MegaMenuColumn[] = [
 export const PRIMARY_NAVIGATION: NavigationTree = {
   items: [
     {
-      id: "work",
-      label: "Work",
-      href: ROUTES.work,
+      id: "home",
+      label: "Home",
+      href: ROUTES.home,
+    },
+    {
+      id: "about",
+      label: "About",
+      href: ROUTES.about,
     },
     {
       id: "services",
@@ -74,24 +79,24 @@ export const PRIMARY_NAVIGATION: NavigationTree = {
       megaMenu: SERVICES_MEGA_MENU,
     },
     {
+      id: "portfolio",
+      label: "Portfolio",
+      href: ROUTES.work,
+    },
+    {
       id: "technology",
       label: "Technology",
       href: ROUTES.technology,
     },
     {
-      id: "process",
-      label: "Process",
-      href: ROUTES.process,
-    },
-    {
-      id: "about",
-      label: "About",
-      href: ROUTES.about,
+      id: "contact",
+      label: "Contact",
+      href: ROUTES.contact,
     },
   ],
   cta: {
     id: "start-project",
-    label: "Start a project",
+    label: "Start Your Project",
     href: ROUTES.contact,
   },
   utilities: {

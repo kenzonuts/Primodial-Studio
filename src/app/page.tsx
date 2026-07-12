@@ -1,22 +1,18 @@
+import { SiteHeader } from "@/components/navigation";
+import { HeroSection } from "@/features/home/sections/hero";
+
 /**
- * Foundation placeholder — UI will be built in the next phase.
- * Keeps the app buildable and accessible while architecture ships first.
+ * Homepage — hero + navigation only (remaining sections ship in later phases).
  */
 export default function HomePage() {
   return (
-    <main
-      id="main-content"
-      className="container-page flex min-h-dvh flex-col items-start justify-center py-24"
-    >
-      <p className="mb-3 text-sm tracking-wide text-secondary uppercase">
-        Primordial Studio
-      </p>
-      <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight text-balance md:text-5xl">
-        Building Digital Products That Matter.
-      </h1>
-      <p className="mt-6 max-w-xl text-base leading-relaxed text-secondary md:text-lg">
-        Creative Technology Studio. Foundation ready — experience coming soon.
-      </p>
-    </main>
+    <>
+      <SiteHeader transparentOverHero />
+      <main id="main-content">
+        <HeroSection />
+        {/* Anchor target for hero scroll indicator — next sections mount here later */}
+        <div id="after-hero" className="h-px w-full" aria-hidden />
+      </main>
+    </>
   );
 }

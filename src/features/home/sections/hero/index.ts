@@ -1,2 +1,2 @@
-/** Homepage section: hero — implement in UI phase. */
-export {};
+export { HeroSection } from "./hero-section";
+export { HERO_COPY } from "./constants";
