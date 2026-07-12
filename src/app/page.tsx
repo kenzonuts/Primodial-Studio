@@ -5,9 +5,11 @@ import { ServicesSection } from "@/features/home/sections/services";
 import { PortfolioSection } from "@/features/home/sections/featured-work";
 import { ProcessSection } from "@/features/home/sections/process";
 import { TechnologySection } from "@/features/home/sections/technology";
+import { WhyUsSection } from "@/features/home/sections/why-us";
+import { FaqSection } from "@/features/home/sections/faq";
 
 /**
- * Homepage — through Process + Technology.
+ * Homepage — through trust sections (Why Us + FAQ).
  */
 export default function HomePage() {
   return (
@@ -20,6 +22,8 @@ export default function HomePage() {
         <PortfolioSection />
         <ProcessSection />
         <TechnologySection />
+        <WhyUsSection />
+        <FaqSection />
       </main>
     </>
   );

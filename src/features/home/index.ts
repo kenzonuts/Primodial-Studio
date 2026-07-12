@@ -21,6 +21,13 @@ export {
   TECH_CATEGORIES,
 } from "./sections/technology";
 export {
+  WhyUsSection,
+  WHY_US_COPY,
+  COMPANY_VALUES,
+  TRUST_QUOTE,
+} from "./sections/why-us";
+export { FaqSection, FAQ_SECTION_COPY, FAQ_ITEMS } from "./sections/faq";
+export {
   HOMEPAGE_SECTIONS,
   getEnabledHomepageSections,
 } from "@/constants/homepage";
