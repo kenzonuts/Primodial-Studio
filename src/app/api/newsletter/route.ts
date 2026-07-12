@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 
+import { engagementService } from "@/services/content";
+
 /**
- * Newsletter API — future email service integration.
+ * Newsletter API — persists via CMS adapter (Payload or static).
  */
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { email?: string };
+    const body = (await request.json()) as { email?: string; source?: string };
 
     if (!body.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
       return NextResponse.json(
@@ -14,10 +16,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // Future: ESP / CMS audience sync
+    const result = await engagementService.subscribe({
+      email: body.email.trim().toLowerCase(),
+      source: body.source ?? "website",
+    });
+
     return NextResponse.json({
       ok: true,
-      id: `newsletter_${Date.now()}`,
+      id: result.id,
       message: "Subscribed",
     });
   } catch {

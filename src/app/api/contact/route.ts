@@ -1,29 +1,42 @@
 import { NextResponse } from "next/server";
 
+import { engagementService } from "@/services/content";
+
 /**
- * Contact form API — future CRM / email service integration.
- * Currently accepts JSON and returns a stub success response.
+ * Contact form API — validates input and persists via CMS adapter (Payload or static).
  */
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as Record<string, unknown>;
 
-    if (
-      typeof body.email !== "string" ||
-      typeof body.fullName !== "string" ||
-      !body.email ||
-      !body.fullName
-    ) {
+    const fullName =
+      typeof body.fullName === "string" ? body.fullName.trim() : "";
+    const email = typeof body.email === "string" ? body.email.trim() : "";
+
+    if (!fullName || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json(
         { ok: false, error: "Invalid payload" },
         { status: 400 },
       );
     }
 
-    // Future: forward to CRM / email provider / queue
+    const result = await engagementService.submitContact({
+      fullName,
+      company: typeof body.company === "string" ? body.company : undefined,
+      email,
+      phone: typeof body.phone === "string" ? body.phone : undefined,
+      projectType:
+        typeof body.projectType === "string" ? body.projectType : undefined,
+      budget: typeof body.budget === "string" ? body.budget : undefined,
+      description:
+        typeof body.description === "string" ? body.description : undefined,
+      source: typeof body.source === "string" ? body.source : "website",
+      locale: typeof body.locale === "string" ? body.locale : "en",
+    });
+
     return NextResponse.json({
       ok: true,
-      id: `contact_${Date.now()}`,
+      id: result.id,
       message: "Received",
     });
   } catch {

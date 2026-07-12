@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -24,6 +24,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "@payload-config": ["./src/cms/payload.config.ts"],
       "@/components/*": ["./src/components/*"],
       "@/features/*": ["./src/features/*"],
       "@/hooks/*": ["./src/hooks/*"],
@@ -32,7 +33,11 @@
       "@/types/*": ["./src/types/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/constants/*": ["./src/constants/*"],
-      "@/stores/*": ["./src/stores/*"]
+      "@/stores/*": ["./src/stores/*"],
+      "@/cms/*": ["./src/cms/*"],
+      "@/adapters/*": ["./src/adapters/*"],
+      "@/repositories/*": ["./src/repositories/*"],
+      "@/services/*": ["./src/services/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

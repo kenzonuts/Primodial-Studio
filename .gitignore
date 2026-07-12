@@ -49,3 +49,11 @@ next-env.d.ts
 
 # turbo
 .turbo
+
+# Payload CMS
+/data/*.db
+/data/*.db-*
+/media/**
+!/media/.gitkeep
+!/data/.gitkeep
+src/cms/payload-types.ts
