@@ -11,6 +11,16 @@ export {
   PORTFOLIO_SECTION_COPY,
 } from "./sections/featured-work";
 export {
+  ProcessSection,
+  PROCESS_SECTION_COPY,
+  PROCESS_STEPS,
+} from "./sections/process";
+export {
+  TechnologySection,
+  TECHNOLOGY_SECTION_COPY,
+  TECH_CATEGORIES,
+} from "./sections/technology";
+export {
   HOMEPAGE_SECTIONS,
   getEnabledHomepageSections,
 } from "@/constants/homepage";
