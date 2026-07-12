@@ -15,7 +15,7 @@ function Navbar() {
   const contactLink = NAVIGATION.find((item) => item.label === "Contact");
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--glass-border)] bg-glass backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-border/60 bg-glass backdrop-blur-xl">
       <Container className="flex h-16 items-center justify-between">
         <Link
           href="/"
@@ -57,7 +57,7 @@ function Navbar() {
       {isMobileNavOpen ? (
         <div
           id="mobile-navigation"
-          className="border-t border-[var(--glass-border)] md:hidden"
+          className="border-t border-border/60 md:hidden"
         >
           <Container className="flex flex-col gap-1 py-4">
             <nav className="flex flex-col" aria-label="Mobile primary">

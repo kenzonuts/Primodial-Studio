@@ -56,20 +56,21 @@ function Button({
   ...props
 }: ButtonProps) {
   const Comp = asChild ? Slot.Root : "button";
-  const isDisabled = disabled || isLoading;
+  const isDisabled = Boolean(disabled || isLoading);
+  const showLoading = isLoading && !asChild;
 
   return (
     <Comp
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      data-loading={isLoading || undefined}
+      data-loading={showLoading || undefined}
       className={cn(buttonVariants({ variant, size, className }))}
       disabled={isDisabled}
-      aria-busy={isLoading || undefined}
+      aria-busy={showLoading || undefined}
       {...props}
     >
-      {isLoading ? (
+      {showLoading ? (
         <>
           <Loader2 className="size-4 animate-spin" aria-hidden />
           <span>{children}</span>

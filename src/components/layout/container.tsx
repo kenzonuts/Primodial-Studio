@@ -1,8 +1,9 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import type { ContainerSize } from "@/types/layout";
 
-const containerSizes = {
+const containerSizes: Record<ContainerSize, string> = {
   sm: "max-w-(--container-sm)",
   md: "max-w-(--container-md)",
   lg: "max-w-(--container-lg)",
@@ -10,9 +11,7 @@ const containerSizes = {
   "2xl": "max-w-(--container-2xl)",
   prose: "max-w-(--container-prose)",
   full: "max-w-none",
-} as const;
-
-type ContainerSize = keyof typeof containerSizes;
+};
 
 type ContainerProps = React.ComponentProps<"div"> & {
   size?: ContainerSize;

@@ -37,6 +37,12 @@ src/
   utils/         # Pure helpers
 ```
 
+## Design system
+
+See [docs/DESIGN_SYSTEM.md](./docs/DESIGN_SYSTEM.md) for tokens, components, and best practices.
+
+Reference compositions live in `src/design-system/examples/` (not routed pages).
+
 ## Getting started
 
 ```bash
