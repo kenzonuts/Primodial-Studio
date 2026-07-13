@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 import { CoverPlaceholder } from "@/features/home/sections/featured-work/cover-placeholder";
+import { ProjectCover } from "@/features/home/sections/featured-work/project-cover";
 import { ProjectStatusBadge } from "@/features/home/sections/featured-work/project-status-badge";
 import { TechBadge } from "@/features/home/sections/featured-work/tech-badge";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -82,15 +83,13 @@ function ProjectCard({ project, className }: ProjectCardProps) {
 
         <div className="relative overflow-hidden">
           {project.coverImage ? (
-            // Real images mount here via next/image when assets exist
-            <div
-              className={cn(
-                "aspect-[16/10] bg-cover bg-center transition-transform duration-700",
-                hovered && !prefersReducedMotion && "scale-[1.04]",
-              )}
-              style={{ backgroundImage: `url(${project.coverImage})` }}
-              role="img"
-              aria-label={`${project.title} cover`}
+            <ProjectCover
+              src={project.coverImage}
+              alt={`${project.title} cover`}
+              fit="contain"
+              zoomed={hovered && !prefersReducedMotion}
+              className="aspect-[16/10]"
+              sizes="(max-width: 768px) 100vw, 33vw"
             />
           ) : (
             <CoverPlaceholder

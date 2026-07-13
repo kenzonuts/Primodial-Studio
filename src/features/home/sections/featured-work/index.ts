@@ -12,4 +12,5 @@ export { PortfolioGrid } from "./portfolio-grid";
 export { FilterChips } from "./filter-chips";
 export { TechBadge } from "./tech-badge";
 export { CoverPlaceholder } from "./cover-placeholder";
+export { ProjectCover } from "./project-cover";
 export { ProjectStatusBadge } from "./project-status-badge";

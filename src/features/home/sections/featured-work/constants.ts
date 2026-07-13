@@ -43,7 +43,7 @@ export const HOME_PROJECTS: Project[] = [
     technologies: ["Flutter", "Supabase", "Google Maps"],
     features: ["Realtime location", "Route discovery", "Shared adventures"],
     year: 2025,
-    coverImage: "",
+    coverImage: "/assets/work/renbok-cover.webp",
     gallery: [],
     overview: "An adventure platform designed for exploration at scale.",
     problem: "Fragmented outdoor discovery tools with weak map fidelity.",

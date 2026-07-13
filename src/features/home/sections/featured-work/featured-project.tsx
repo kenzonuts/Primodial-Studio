@@ -11,6 +11,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { CoverPlaceholder } from "@/features/home/sections/featured-work/cover-placeholder";
+import { ProjectCover } from "@/features/home/sections/featured-work/project-cover";
 import { ProjectStatusBadge } from "@/features/home/sections/featured-work/project-status-badge";
 import { TechBadge } from "@/features/home/sections/featured-work/tech-badge";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
@@ -70,17 +71,17 @@ function FeaturedProject({ project, className }: FeaturedProjectProps) {
           }}
         />
 
-        <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="relative min-h-[16rem] overflow-hidden sm:min-h-[20rem] lg:min-h-[28rem]">
+        <div className="grid lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
+          <div className="relative aspect-[16/9] w-full overflow-hidden">
             {project.coverImage ? (
-              <div
-                className={cn(
-                  "absolute inset-0 bg-cover bg-center transition-transform duration-700",
-                  hovered && !prefersReducedMotion && "scale-[1.04]",
-                )}
-                style={{ backgroundImage: `url(${project.coverImage})` }}
-                role="img"
-                aria-label={`${project.title} cover`}
+              <ProjectCover
+                src={project.coverImage}
+                alt={`${project.title} cover`}
+                fit="contain"
+                priority
+                zoomed={hovered && !prefersReducedMotion}
+                className="absolute inset-0"
+                sizes="(max-width: 1024px) 100vw, 60vw"
               />
             ) : (
               <CoverPlaceholder
