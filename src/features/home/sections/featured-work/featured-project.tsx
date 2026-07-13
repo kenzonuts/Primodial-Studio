@@ -9,6 +9,7 @@ import {
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
+import { projectSectionId } from "@/constants/routes";
 import { Button } from "@/components/ui/button";
 import { CoverPlaceholder } from "@/features/home/sections/featured-work/cover-placeholder";
 import { ProjectCover } from "@/features/home/sections/featured-work/project-cover";
@@ -30,7 +31,7 @@ function FeaturedProject({ project, className }: FeaturedProjectProps) {
   const prefersReducedMotion = usePrefersReducedMotion();
   const [hovered, setHovered] = useState(false);
   const [spot, setSpot] = useState({ x: 60, y: 40 });
-  const href = project.href ?? `/work/${project.slug}`;
+  const href = project.href ?? `/#${projectSectionId(project.slug)}`;
 
   const onPointerMove = useCallback(
     (event: ReactPointerEvent<HTMLElement>) => {
@@ -46,7 +47,8 @@ function FeaturedProject({ project, className }: FeaturedProjectProps) {
 
   return (
     <article
-      className={cn("group relative", className)}
+      id={projectSectionId(project.slug)}
+      className={cn("group relative scroll-mt-28", className)}
       data-project={project.slug}
       data-featured
       onPointerEnter={() => setHovered(true)}

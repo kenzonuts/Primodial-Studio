@@ -10,6 +10,7 @@ import {
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
+import { projectSectionId } from "@/constants/routes";
 import { CoverPlaceholder } from "@/features/home/sections/featured-work/cover-placeholder";
 import { ProjectCover } from "@/features/home/sections/featured-work/project-cover";
 import { ProjectStatusBadge } from "@/features/home/sections/featured-work/project-status-badge";
@@ -40,13 +41,14 @@ function ProjectCard({ project, className }: ProjectCardProps) {
     [prefersReducedMotion],
   );
 
-  const href = project.href ?? `/work/${project.slug}`;
+  const href = project.href ?? `/#${projectSectionId(project.slug)}`;
   const categoryLabel =
     project.category.charAt(0).toUpperCase() + project.category.slice(1);
 
   return (
     <article
-      className={cn("group relative h-full", className)}
+      id={projectSectionId(project.slug)}
+      className={cn("group relative h-full scroll-mt-28", className)}
       data-project={project.slug}
       data-case-study-ready={project.caseStudyReady || undefined}
       data-live-url={project.liveUrl || undefined}

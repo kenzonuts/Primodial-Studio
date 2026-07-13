@@ -41,6 +41,15 @@ export const HOME_SECTIONS = {
   cta: "/#start-a-project",
 } as const;
 
+/** In-page portfolio card anchors until dedicated case study pages ship. */
+export function projectSectionHref(slug: string) {
+  return `/#project-${slug}` as const;
+}
+
+export function projectSectionId(slug: string) {
+  return `project-${slug}` as const;
+}
+
 export const SERVICE_SLUGS = [
   "software-engineering",
   "website-development",

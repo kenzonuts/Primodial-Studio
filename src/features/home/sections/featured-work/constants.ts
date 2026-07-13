@@ -1,4 +1,4 @@
-import { HOME_SECTIONS } from "@/constants/routes";
+import { HOME_SECTIONS, projectSectionHref } from "@/constants/routes";
 import type { Project, ProjectFilter } from "@/types/portfolio";
 
 export const PORTFOLIO_SECTION_COPY = {
@@ -50,7 +50,7 @@ export const HOME_PROJECTS: Project[] = [
     solution: "A unified Flutter app with live maps and durable backend sync.",
     timeline: "Discovery → Design → Build → Launch",
     client: "RENBOK",
-    href: HOME_SECTIONS.portfolio,
+    href: projectSectionHref("renbok"),
     caseStudyReady: false,
     featured: true,
     liveUrl: undefined,
@@ -72,7 +72,7 @@ export const HOME_PROJECTS: Project[] = [
     year: 2024,
     coverImage: "",
     gallery: [],
-    href: HOME_SECTIONS.portfolio,
+    href: projectSectionHref("exoduze"),
     caseStudyReady: false,
     featured: false,
   },
@@ -92,27 +92,40 @@ export const HOME_PROJECTS: Project[] = [
     year: 2026,
     coverImage: "",
     gallery: [],
-    href: HOME_SECTIONS.portfolio,
+    href: projectSectionHref("primordial-studio"),
     caseStudyReady: false,
     featured: false,
   },
   {
-    id: "restaurant-management",
-    slug: "restaurant-management-system",
-    title: "Restaurant Management System",
-    summary: "Operations dashboard for modern restaurant teams.",
+    id: "gen-z-grow",
+    slug: "gen-z-grow",
+    title: "GEN-Z GROW",
+    summary:
+      "Empowering healthier generations through interactive nutrition education, child growth tracking, and collaborative learning.",
     description:
-      "A management system unifying orders, inventory signals, and staff workflows through a clear, high-density dashboard experience.",
+      "A comprehensive digital platform designed to support children, parents, and educators with assessments, personalized learning, growth monitoring, community discussions, and research-driven analytics for stunting prevention.",
     status: "shipped",
-    category: "product",
+    category: "platform",
     filters: ["web", "ui-ux"],
-    services: ["software-engineering", "ui-ux-design"],
-    technologies: ["Next.js", "PostgreSQL", "Dashboard"],
-    features: ["Order ops", "Inventory views", "Role-based access"],
+    services: ["software-engineering", "website-development", "ui-ux-design"],
+    technologies: ["React", "ASP.NET Core", "Supabase", "PostgreSQL"],
+    features: [
+      "Nutrition education",
+      "Growth tracking",
+      "Personalized learning",
+      "Community & analytics",
+    ],
     year: 2025,
     coverImage: "",
     gallery: [],
-    href: HOME_SECTIONS.portfolio,
+    overview:
+      "A collaborative health-education platform spanning children, parents, and educators.",
+    problem:
+      "Stunting prevention needs coordinated education, monitoring, and research-ready data across families and schools.",
+    solution:
+      "An interactive platform for assessments, learning paths, growth tracking, community discussion, and analytics.",
+    client: "GEN-Z GROW",
+    href: projectSectionHref("gen-z-grow"),
     caseStudyReady: false,
     featured: false,
   },
@@ -132,7 +145,7 @@ export const HOME_PROJECTS: Project[] = [
     year: 2025,
     coverImage: "",
     gallery: [],
-    href: HOME_SECTIONS.portfolio,
+    href: projectSectionHref("roblox-multiplayer-experience"),
     caseStudyReady: false,
     featured: false,
   },
@@ -156,7 +169,7 @@ export const HOME_PROJECTS: Project[] = [
     year: 2025,
     coverImage: "",
     gallery: [],
-    href: HOME_SECTIONS.portfolio,
+    href: projectSectionHref("artificial-intelligence-dashboard"),
     caseStudyReady: false,
     featured: false,
   },
