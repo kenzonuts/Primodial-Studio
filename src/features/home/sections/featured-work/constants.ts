@@ -165,7 +165,7 @@ export const HOME_PROJECTS: Project[] = [
     technologies: ["OpenAI", "Next.js", "Automation"],
     features: ["Assistant ops", "Workflow automation", "Insight views"],
     year: 2025,
-    coverImage: "",
+    coverImage: "/assets/work/ai-dashboard-cover.webp",
     gallery: [],
     href: projectSectionHref("artificial-intelligence-dashboard"),
     caseStudyReady: false,
