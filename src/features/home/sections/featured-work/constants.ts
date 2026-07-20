@@ -116,10 +116,8 @@ export const HOME_PROJECTS: Project[] = [
       "Community & analytics",
     ],
     year: 2025,
-    coverImage: "",
+    coverImage: "/assets/work/gen-z-grow-cover.webp",
     gallery: [],
-    overview:
-      "A collaborative health-education platform spanning children, parents, and educators.",
     problem:
       "Stunting prevention needs coordinated education, monitoring, and research-ready data across families and schools.",
     solution:

@@ -9,6 +9,7 @@ import {
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
+import { HashLink } from "@/components/navigation/hash-link";
 import { projectSectionId } from "@/constants/routes";
 import { Button } from "@/components/ui/button";
 import { CoverPlaceholder } from "@/features/home/sections/featured-work/cover-placeholder";
@@ -120,7 +121,7 @@ function FeaturedProject({ project, className }: FeaturedProjectProps) {
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button asChild size="lg" className="group/btn">
-                <Link
+                <HashLink
                   href={href}
                   aria-label={`Learn more about ${project.title}`}
                 >
@@ -138,7 +139,7 @@ function FeaturedProject({ project, className }: FeaturedProjectProps) {
                   >
                     <ArrowUpRight className="size-4" />
                   </motion.span>
-                </Link>
+                </HashLink>
               </Button>
               {project.liveUrl ? (
                 <Button asChild variant="outline" size="lg">

@@ -95,6 +95,42 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     return () => window.removeEventListener("popstate", restore);
   }, [lenis]);
 
+  /** Honor in-page hash targets (nav + portfolio Learn more). */
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const scrollToHash = (behavior: "smooth" | "instant" = "smooth") => {
+      const hash = window.location.hash;
+      if (!hash || hash === "#") return;
+      const target = document.querySelector(hash);
+      if (!(target instanceof HTMLElement)) return;
+
+      const offset = -112;
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(target, {
+          offset,
+          immediate: behavior === "instant",
+        });
+        return;
+      }
+
+      const top = target.getBoundingClientRect().top + window.scrollY + offset;
+      window.scrollTo({
+        top,
+        behavior: behavior === "instant" ? "auto" : "smooth",
+      });
+    };
+
+    const frame = window.requestAnimationFrame(() => scrollToHash("instant"));
+    const onHashChange = () => scrollToHash("smooth");
+    window.addEventListener("hashchange", onHashChange);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", onHashChange);
+    };
+  }, [lenis]);
+
   const value = useMemo<SmoothScrollContextValue>(
     () => ({
       lenis,

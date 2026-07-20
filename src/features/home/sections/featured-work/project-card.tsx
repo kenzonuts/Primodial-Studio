@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   useCallback,
   useState,
@@ -10,6 +9,7 @@ import {
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
+import { HashLink } from "@/components/navigation/hash-link";
 import { projectSectionId } from "@/constants/routes";
 import { CoverPlaceholder } from "@/features/home/sections/featured-work/cover-placeholder";
 import { ProjectCover } from "@/features/home/sections/featured-work/project-cover";
@@ -129,7 +129,7 @@ function ProjectCard({ project, className }: ProjectCardProps) {
           </div>
 
           <div className="mt-auto pt-5">
-            <Link
+            <HashLink
               href={href}
               className="inline-flex items-center gap-1.5 text-[0.8125rem] font-medium text-foreground transition-colors hover:text-accent-blue focus-visible:rounded-sm focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-none"
               aria-label={`Learn more about ${project.title}`}
@@ -148,7 +148,7 @@ function ProjectCard({ project, className }: ProjectCardProps) {
               >
                 <ArrowUpRight className="size-3.5" />
               </motion.span>
-            </Link>
+            </HashLink>
           </div>
         </div>
       </div>
